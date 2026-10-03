@@ -1,0 +1,15 @@
+{
+  "name": "HelperBot",
+  "version": "1.10",
+  "port": 8080,
+  "max_users": 500,
+  "response_delay": 0.5,
+  "is_active": true,
+  "debug_mode": false,
+  "database": {
+    "host": "localhost",
+    "port": 5432,
+    "name": "chatbot_db"
+  },
+  "commands": ["start", "help", "stop"]
+}
