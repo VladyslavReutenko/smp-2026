@@ -1,7 +1,7 @@
 {
   "name": "HelperBot",
   "version": "1.10",
-  "port": 8080,
+  "port": 8000,
   "max_users": 500,
   "response_delay": 0.5,
   "is_active": true,
