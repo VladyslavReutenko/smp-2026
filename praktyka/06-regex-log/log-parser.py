@@ -12,6 +12,7 @@ propushcheno = 0
 ip_counter = Counter()
 status_counter = Counter()
 pomylky_5xx = []
+status404_shlyakhy = Counter()
 
 with open("data/access.log", encoding="utf-8") as f:
     for line in f:
@@ -26,6 +27,9 @@ with open("data/access.log", encoding="utf-8") as f:
 
         if m["status"].startswith("5"):
             pomylky_5xx.append((m["time"], m["path"]))
+
+        if m["status"] == "404":
+            status404_shlyakhy[m["path"]] += 1
 
 # 1. Скільки розібрано і пропущено
 print(f"Розібрано: {rozibrano}, пропущено: {propushcheno}")
@@ -47,3 +51,9 @@ print()
 print(f"Запити з помилкою 5xx ({len(pomylky_5xx)}):")
 for time, path in pomylky_5xx:
     print(f"  [{time}] {path}")
+print()
+
+# 5. Шляхи з помилкою 404
+print("Шляхи з помилкою 404:")
+for path, cnt in status404_shlyakhy.most_common():
+    print(f"  {path}: {cnt}")
