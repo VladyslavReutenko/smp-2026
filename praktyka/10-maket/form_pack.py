@@ -8,13 +8,29 @@ import tkinter as tk
 vikno = tk.Tk()
 vikno.title("Реєстрація — pack")
 
-# Що має бути у формі (README, крок 2):
-#   заголовок «Реєстрація»;
-#   чотири підписи з полями: Імʼя, Пошта, Телефон, Пароль — поле пароля з show="•";
-#   прапорець «Погоджуюсь з умовами»;
-#   кнопки «Зареєструватись» і «Скасувати» — внизу праворуч.
-# Тут — ЛИШЕ pack. Рядок «підпис + поле» зручно зробити окремою tk.Frame, усередині — теж pack.
+# Заголовок
+tk.Label(vikno, text="Реєстрація", font=("Arial", 16, "bold")).pack(pady=10)
 
-# ← ваш код
+# Чотири рядки: кожен — окрема рамка, всередині підпис і поле поруч
+pidpysy = ["Імʼя", "Пошта", "Телефон", "Пароль"]
+for tekst in pidpysy:
+    ryadok = tk.Frame(vikno)
+    ryadok.pack(fill="x", padx=10, pady=5)
+    # однакова width і anchor="w" — щоб усі поля стали в одну колонку
+    tk.Label(ryadok, text=tekst, width=10, anchor="w").pack(side="left")
+    if tekst == "Пароль":
+        pole = tk.Entry(ryadok, show="•")
+    else:
+        pole = tk.Entry(ryadok)
+    pole.pack(side="left", fill="x", expand=True)
+
+# Прапорець, притиснутий ліворуч
+tk.Checkbutton(vikno, text="Погоджуюсь з умовами").pack(anchor="w", padx=10, pady=5)
+
+# Кнопки внизу праворуч: рамка на всю ширину, кнопки притиснуті праворуч
+knopky = tk.Frame(vikno)
+knopky.pack(fill="x", padx=10, pady=10)
+tk.Button(knopky, text="Скасувати").pack(side="right", padx=(5, 0))
+tk.Button(knopky, text="Зареєструватись").pack(side="right")
 
 vikno.mainloop()
